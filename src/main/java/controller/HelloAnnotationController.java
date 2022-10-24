@@ -16,7 +16,7 @@ public class HelloAnnotationController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", "hello2 " + name);
 		mav.setViewName("hello");
-		System.out.println(name);
+		System.out.println("hello2 " + name);
 		return mav;
 	}
 }

@@ -2,13 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/task"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        					   http://www.springframework.org/schema/beans/spring-beans.xsd
        					   http://www.springframework.org/schema/context
        					   https://www.springframework.org/schema/context/spring-context.xsd
-       					   http://www.springframework.org/schema/task
-       					   http://www.springframework.org/schema/task/spring-task.xsd">
+       					   http://www.springframework.org/schema/mvc
+       					   http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <!-- 第一种方式，基于实现接口 -->
 		<!-- 2.配置HandlerMapping -->
 		<!-- <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/> -->
@@ -21,6 +21,7 @@
     <mvc:annotation-driven/>
     <!--注解扫描-->
     <context:component-scan base-package="controller"/>
+    
 	<!-- 4.配置Handler -->
 	<!-- <bean name="/hello" class="controller.HelloController"/> -->
 	
@@ -31,4 +32,12 @@
 		<!-- 6.配置View，使用JSP视图技术渲染页面 -->
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
 	</bean>
+	
+	<!-- 
+		第二节：访问静态资源
+	 -->
+	<!-- 1.使用Tomcat提供的默认Servlet处理静态资源 -->
+	<!-- <mvc:default-servlet-handler /> -->
+	<!-- 2.使用SpringMVC标签 -->
+	<mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
 </beans>

@@ -19,7 +19,7 @@ public class HelloController implements Controller {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", "hello " + name);
 		mav.setViewName("hello");
-		System.out.println(name);
+		System.out.println("hello " + name);
 		return mav;
 	}
 }
