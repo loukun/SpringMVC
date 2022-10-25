@@ -40,4 +40,18 @@
 	<!-- <mvc:default-servlet-handler /> -->
 	<!-- 2.使用SpringMVC标签 -->
 	<mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
+	
+	<!-- 直接访问jsp页面 -->
+	<mvc:view-controller path="/userLogin" view-name="login"/>
+	
+	<!-- 
+		第三节：方法返回值
+			1.ModelAndView
+			2.String 表示返回的是视图
+				2-1：普通字符串：表示视图名称
+				2-2：“forward：”+url 表示转发
+				2-3：“redirect：”+url 表示重定向
+			3.void 将请求的url作为视图名称
+			4.Object 表示返回的是数据模型（一般返回的是json数据）
+	 -->
 </beans>
