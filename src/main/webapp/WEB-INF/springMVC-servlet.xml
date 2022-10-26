@@ -49,9 +49,40 @@
 			1.ModelAndView
 			2.String 表示返回的是视图
 				2-1：普通字符串：表示视图名称
-				2-2：“forward：”+url 表示转发
+				2-2：“forward：”+url 表示转发。当加"/"的时候表示从项目的根目录开始查找。不加的时候表示从相对的层级路径开始查找。
 				2-3：“redirect：”+url 表示重定向
 			3.void 将请求的url作为视图名称
 			4.Object 表示返回的是数据模型（一般返回的是json数据）
 	 -->
+	 <!-- 
+	 	第四节：URL的多种写法，根据请求方式访问
+	 	1.SpringMVC注释
+	 	@Controller:将类映射为Controller，添加到IoC容器中
+	 	@RequestMapping：配置请求的映射路径，即URL。该注释可以定义在方法上，也可以定义在类上，表示层级关系（参见PathController）
+	 	@RequestPrarm：表示参数来源于请求参数
+	 	@PathVariable：表示参数来源于URL
+	 	@RequestHeader：表示参数来源于请求头
+	 	@CookieValue：表示参数来源于Cookie
+	 	@RequestBody：表示参数来源于请求体
+	 	@ModelAttribute：将请求数据转换为对象
+	 	@Valid：后台校验
+	 	@InitBinder：类型转换，注册属性编辑器
+	 	@ControllerAdivice：统一异常处理，处理全局异常
+	 	@ExceptionHander:异常处理器，处理特定异常的方法
+	 	@ResponseBody：结合返回值为Object的方法使用，用来返回JSON数据
+	 	@RestController：将类映射为Controller层，默认为所有方法添加@RequestBody注释
+	 	2.请求映射路径有三种方法
+	 		2-1.Ant风格
+	 			"*"表示单层目录，可以匹配任意字符
+	 			"**"表示多层或单层目录，可以匹配任意字符
+	 			"?"表示单个字符，必须有一个字符
+	 		2-2.Rest风格
+	 			{变量}表示URL中的占位符，可以结合@PathVariable获取值
+	 			{变量：正则表达式}表示使用正则表达式限制值的格式
+	 		2-3.固定的值
+	 	3.根据请求方式来访问
+	 		@RequestMapping(path="/test7", method = RequestMethod.POST)
+	 		@GetMapping("/user/{id}")
+	 		@PostMapping("/user/{id}")
+	  -->
 </beans>
