@@ -55,11 +55,11 @@
 			4.Object 表示返回的是数据模型（一般返回的是json数据）
 	 -->
 	 <!-- 
-	 	第四节：URL的多种写法，根据请求方式访问
+	 	第四节：URL的多种写法，根据请求方式访问(PathController.java)
 	 	1.SpringMVC注释
 	 	@Controller:将类映射为Controller，添加到IoC容器中
 	 	@RequestMapping：配置请求的映射路径，即URL。该注释可以定义在方法上，也可以定义在类上，表示层级关系（参见PathController）
-	 	@RequestPrarm：表示参数来源于请求参数
+	 	@RequestParam：表示参数来源于请求参数
 	 	@PathVariable：表示参数来源于URL
 	 	@RequestHeader：表示参数来源于请求头
 	 	@CookieValue：表示参数来源于Cookie
@@ -85,4 +85,23 @@
 	 		@GetMapping("/user/{id}")
 	 		@PostMapping("/user/{id}")
 	  -->
+	  <!-- 
+	  	第五节：方法的参数(ParamController.java)
+	  		JAVAEE组件
+	  			HttpServletRequest
+	  			HttpServletResponse
+	  			HttpSession
+	  		IO流
+	  			InputStream/OutputStream
+	  			Reader/Writer
+	  		向界面传数据
+	  			Model,Map,ModelMap
+	  			将数据存储到Request作用于中
+	  		String和基本数据类型，表示参数从其他地方获取来的。
+	  			默认追加了标签@RequestParam表示参数来源于请求参数，参数值来源于同名的请求参数
+	  			@PathVariable：表示参数来源于URL
+	  			@RequestHeader：表示参数来源于请求头
+			 	@CookieValue：表示参数来源于Cookie
+			 	@RequestBody：表示参数来源于请求体(只有post请求才有请求体)
+	   -->
 </beans>
