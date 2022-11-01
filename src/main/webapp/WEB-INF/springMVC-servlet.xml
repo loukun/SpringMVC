@@ -87,21 +87,45 @@
 	  -->
 	  <!-- 
 	  	第五节：方法的参数(ParamController.java)
-	  		JAVAEE组件
+	  		JAVAEE组件(test1)
 	  			HttpServletRequest
 	  			HttpServletResponse
 	  			HttpSession
-	  		IO流
+	  		IO流(test2)
 	  			InputStream/OutputStream
 	  			Reader/Writer
-	  		向界面传数据
+	  		向界面传数据(test3)
 	  			Model,Map,ModelMap
 	  			将数据存储到Request作用于中
 	  		String和基本数据类型，表示参数从其他地方获取来的。
-	  			默认追加了标签@RequestParam表示参数来源于请求参数，参数值来源于同名的请求参数
-	  			@PathVariable：表示参数来源于URL
-	  			@RequestHeader：表示参数来源于请求头
-			 	@CookieValue：表示参数来源于Cookie
-			 	@RequestBody：表示参数来源于请求体(只有post请求才有请求体)
+	  			默认追加了标签@RequestParam表示参数来源于请求参数，参数值来源于同名的请求参数(test4)(test5)
+	  			@PathVariable：表示参数来源于URL(test6)
+	  			@RequestHeader：表示参数来源于请求头(test7)
+			 	@CookieValue：表示参数来源于Cookie(setCookie,test8)
+			 	@RequestBody：表示参数来源于请求体(只有post请求才有请求体)(test9)
+			自定义类型
+				自定义类型，参数前添加注释@ModelAttribute，可将表单中同名的数据自动转换成自定义类型中的属性值。
+				@ModelAttribute注释有两种用法：
+					1.在方法参数的签名添加该注释(test10)
+					  作用：将请求参数转换为对象
+					2.在方法的上面添加该注释(sex)
+					  作用：在调用所有目标方法前都会调用添加了@ModelAttribute注释的方法，并向模型中添加数据（一般用于向画面预先加载数据，例如下拉列表中的数据等）
+			错误参数
+				Errors,BingdingResult
+				用来接收错误信息，实现服务端的数据校验
 	   -->
+	   
+	   <!-- 
+	   	第六节：服务器校验框架
+	   		1.简介
+		   		1.1 JSR3003校验
+		   			JSR303是一个数据验证的标准规范，用于对JAVA Bean的属性进行校验，称为BeanValidation
+		   			提供了常用的校验注释
+		   		1.2 hibernate Validator
+		   			是JSR303的一个参考实现，并提供了扩展注释
+	   		2.用法
+	   			2.1 添加jar包
+	   			2.2 为参数对象添加注解@Valid注解
+	   			2.3 为对象属性添加注解
+	    -->
 </beans>
