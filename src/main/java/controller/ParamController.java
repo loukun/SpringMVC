@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.DataBinder;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import editor.AddressEditor;
+import entity.Address;
 import entity.UserVo;
 
 @Controller
@@ -174,5 +178,14 @@ public class ParamController {
 	public List<String> getSex() {
 		List<String> list = Arrays.asList("男", "女");
 		return list;
+	}
+	
+	/**
+	 * 注册属性编辑器
+	 * @param bingder
+	 */
+	@InitBinder
+	public void initBinder(DataBinder bingder) {
+		bingder.registerCustomEditor(Address.class, new AddressEditor());
 	}
 }

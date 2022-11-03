@@ -17,8 +17,11 @@
 		<!--  <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" /> -->
 	<!-- 第二种方式，基于注释 -->
 		
-	<!--开启注解扫描-->
-    <mvc:annotation-driven/>
+	<!--
+		开启注解扫描
+		MVC的注解驱动，用来简化配置，默认会加载许多内置的类型转换器，如果要使用自定义的类型转换器，需要自己指定
+	-->
+    <mvc:annotation-driven conversion-service="conversionService"/>
     <!--注解扫描-->
     <context:component-scan base-package="controller"/>
     
@@ -114,7 +117,6 @@
 				Errors,BingdingResult
 				用来接收错误信息，实现服务端的数据校验
 	   -->
-	   
 	   <!-- 
 	   	第六节：服务器校验框架
 	   		1.简介
@@ -128,4 +130,34 @@
 	   			2.2 为参数对象添加注解@Valid注解
 	   			2.3 为对象属性添加注解
 	    -->
+	    <!-- 
+	    第七节：数据绑定
+	    	1.简介
+	    		数据绑定流程：获取数据——查找转换器——转换——后台数据校验（可选流程）——数据绑定
+	    		
+	    		两种解决方式：
+	    			方式1：使用ProperytEditor
+	    			方式2：使用Converter（推荐使用这种方式）
+	    	2.使用ProperytEditor
+	    		步骤：
+	    			1.定义属性编辑器（AddressdEditor.java）
+	    			2.注册属性编辑器(在ParamController中添加以下标签)
+	    				@InitBinder
+	    		缺点：
+	    			1.注册的代码嵌套在Controller中
+	    			2.只能从字符串转换为相应的对象
+	    	3.使用Converter
+	    		步骤：
+	    			1.定义转换器，实现Converter接口（StringAddressConverter.java）
+	    			2.管理自定义转换器
+	    			3.加载应用自定义转换器(<mvc:annotation-driven conversion-service="conversionService"/>)
+	     -->
+	<!-- 管理自定义转换器 -->
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean class="converter.StringAddressConverter"/>
+			</set>
+		</property>
+	</bean>
 </beans>
