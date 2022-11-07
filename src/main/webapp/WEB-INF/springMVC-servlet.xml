@@ -87,8 +87,8 @@
 	 		@RequestMapping(path="/test7", method = RequestMethod.POST)
 	 		@GetMapping("/user/{id}")
 	 		@PostMapping("/user/{id}")
-	  -->
-	  <!-- 
+	-->
+	<!-- 
 	  	第五节：方法的参数(ParamController.java)
 	  		JAVAEE组件(test1)
 	  			HttpServletRequest
@@ -116,8 +116,8 @@
 			错误参数
 				Errors,BingdingResult
 				用来接收错误信息，实现服务端的数据校验
-	   -->
-	   <!-- 
+	-->
+	<!-- 
 	   	第六节：服务器校验框架
 	   		1.简介
 		   		1.1 JSR3003校验
@@ -129,9 +129,9 @@
 	   			2.1 添加jar包
 	   			2.2 为参数对象添加注解@Valid注解
 	   			2.3 为对象属性添加注解
-	    -->
-	    <!-- 
-	    第七节：数据绑定
+	 -->
+	<!-- 
+		第七节：数据绑定
 	    	1.简介
 	    		数据绑定流程：获取数据——查找转换器——转换——后台数据校验（可选流程）——数据绑定
 	    		
@@ -151,7 +151,7 @@
 	    			1.定义转换器，实现Converter接口（StringAddressConverter.java）
 	    			2.管理自定义转换器
 	    			3.加载应用自定义转换器(<mvc:annotation-driven conversion-service="conversionService"/>)
-	     -->
+	-->
 	<!-- 管理自定义转换器 -->
 	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
@@ -160,4 +160,18 @@
 			</set>
 		</property>
 	</bean>
+	<!-- 
+		第八节：@SessionAttributes和统一异常处理
+		@SessionAttributes
+			作用：将模型中指定名称的数据存储在Session中
+			使用方法：在类上添加该标签@SessionAttributes("userVo")
+		
+		统一异常处理
+			对异常进行统一处理
+			两种方法：1.web.xml中追加比如404,500等的跳转
+						<error-page></error-page>
+					2.使用SpringMVC的异常处理(ExceptionAdvice.java)
+					步骤：1.定义一个异常处理类（异常通知）,添加注解:@ControllerAdvice
+						2.定义异常处理方法:@ExceptionHandler(ArithmeticException.class)
+	 -->
 </beans>
