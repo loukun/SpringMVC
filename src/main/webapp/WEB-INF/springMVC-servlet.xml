@@ -21,7 +21,7 @@
 		开启注解扫描
 		MVC的注解驱动，用来简化配置，默认会加载许多内置的类型转换器，如果要使用自定义的类型转换器，需要自己指定
 	-->
-    <mvc:annotation-driven conversion-service="conversionService"/>
+    <mvc:annotation-driven />
     <!--注解扫描-->
     <context:component-scan base-package="controller"/>
     
@@ -150,16 +150,16 @@
 	    		步骤：
 	    			1.定义转换器，实现Converter接口（StringAddressConverter.java）
 	    			2.管理自定义转换器
-	    			3.加载应用自定义转换器(<mvc:annotation-driven conversion-service="conversionService"/>)
+	    			3.加载应用自定义转换器(<mvc:annotation-driven conversion-service="conversionService11"/>)
 	-->
 	<!-- 管理自定义转换器 -->
-	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	<!-- <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<property name="converters">
 			<set>
 				<bean class="converter.StringAddressConverter"/>
 			</set>
 		</property>
-	</bean>
+	</bean> -->
 	<!-- 
 		第八节：@SessionAttributes和统一异常处理
 		@SessionAttributes
@@ -174,4 +174,23 @@
 					步骤：1.定义一个异常处理类（异常通知）,添加注解:@ControllerAdvice
 						2.定义异常处理方法:@ExceptionHandler(ArithmeticException.class)
 	 -->
+	 <!-- Start
+	 	第九节：拦截器(HelloInterceptor.java)
+	 		1.实现接口HandlerInterceptor
+	 		2.注册拦截器
+	  -->
+	  <!-- 配置拦截器 -->
+	  <mvc:interceptors>
+	  	<!-- 拦截所有的请求 -->
+	  	<bean class="interceptor.HelloInterceptor"/>
+	  	<!-- 拦截指定请求 -->
+	  	<mvc:interceptor>
+	  		<mvc:mapping path="/param/test7"/>
+	  		<mvc:mapping path="/param/test8"/>
+	  		<mvc:mapping path="/path/*"/><!-- 路径下所有请求 -->
+	  		<mvc:exclude-mapping path="/path/test7"/><!-- 排除某一个请求 -->
+	  		<bean class="interceptor.TimeInterceptor"/>
+	  	</mvc:interceptor>
+	  </mvc:interceptors>
+	  <!-- End -->
 </beans>
